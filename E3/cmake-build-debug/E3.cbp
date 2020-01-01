@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="E3"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="E3">
+				<Option output="/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/E3" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 E3"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="E3/fast">
+				<Option output="/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/E3" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 E3/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/pskowronski/Repos/PEA-Projekt/E3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.cpp">
+			<Option target="E3"/>
+		</Unit>
+		<Unit filename="/home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.h">
+			<Option target="E3"/>
+		</Unit>
+		<Unit filename="/home/pskowronski/Repos/PEA-Projekt/E3/Graph.cpp">
+			<Option target="E3"/>
+		</Unit>
+		<Unit filename="/home/pskowronski/Repos/PEA-Projekt/E3/Graph.h">
+			<Option target="E3"/>
+		</Unit>
+		<Unit filename="/home/pskowronski/Repos/PEA-Projekt/E3/main.cpp">
+			<Option target="E3"/>
+		</Unit>
+		<Unit filename="/home/pskowronski/Repos/PEA-Projekt/E3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
