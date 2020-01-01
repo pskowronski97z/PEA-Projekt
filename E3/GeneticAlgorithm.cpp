@@ -4,17 +4,21 @@
 
 #include "GeneticAlgorithm.h"
 #include <iostream>
+#include <ctime>
+
 
 GeneticAlgorithm::GeneticAlgorithm(Graph *graph, int stop, int population, float crossRate, float mutationRate) {
+
     matrix = graph->getMatrix();
     size = graph->getCount();
     this->stop = stop;
-    this->population = population;
+    populationSize = population;
     this->crossRate = crossRate;
     this->mutationRate = mutationRate;
 }
 
 int GeneticAlgorithm::calculatePath(std::vector<int> &path) {
+
     int result = 0;
 
     for (int i = 0; i < size - 1; i++) {
@@ -27,17 +31,16 @@ int GeneticAlgorithm::calculatePath(std::vector<int> &path) {
 }
 
 void GeneticAlgorithm::orderedCrossover(std::vector<int> &parent1, std::vector<int> &parent2) {
+
     std::vector<int> desc1;
     std::vector<int> desc2;
+    std::vector<int>::iterator itr1;
+    std::vector<int>::iterator itr2;
+    int begin;
+    int end;
 
     desc1.resize(size);
     desc2.resize(size);
-
-    std::vector<int>::iterator itr1;
-    std::vector<int>::iterator itr2;
-
-    int begin;
-    int end;
 
     do {
         begin = rand() % size;
@@ -131,10 +134,114 @@ void GeneticAlgorithm::orderedCrossover(std::vector<int> &parent1, std::vector<i
 }
 
 bool GeneticAlgorithm::isInPath(int element, int begin, int end, std::vector<int> &path) {
+
     for (int i = begin; i <= end; i++) {
         if (element == path[i])
             return true;
     }
 
     return false;
+}
+
+void GeneticAlgorithm::apply() {
+
+    std::vector<std::vector<int>> population;
+    std::vector<std::vector<int>> nextGeneration;
+    std::vector<int> fitness;
+    std::vector<int> nextFitness;
+    std::vector<int> permutation;
+    int tournamentSize = populationSize*0.00001;
+    int index;
+    int result;
+    int p1;
+    int p2;
+    int mutation;
+    std::clock_t start;
+
+    for (int i = 0; i < size; i++) {
+        permutation.push_back(i);
+    }
+
+    for (int i = 0; i < populationSize; i++) {
+        std::random_shuffle(permutation.begin(), permutation.end());
+        population.push_back(permutation);
+        fitness.push_back(calculatePath(permutation));
+    }
+
+    permutation.clear();
+
+    start = std::clock();
+
+    //Kolejne iteracje algorytmu
+    while ((((std::clock() - start) / (double) CLOCKS_PER_SEC)) < stop) {
+        // Tworzenie nowej populacji na drodze selekcji
+        for (int j = 0; j < populationSize; j++) {
+
+            result = INT32_MAX;
+
+            // Wybór najlepszego osobnika z turnieju
+            for (int k = 0; k < tournamentSize; k++) {
+
+                index = rand() % populationSize;
+
+                if (fitness[index] < result) {
+
+                    result = fitness[index];
+                    permutation.clear();
+                    permutation = population[index];
+                }
+            }
+            nextGeneration.push_back(permutation);
+            nextFitness.push_back(result);
+        }
+
+        // Wymiana pokoleń
+        for (auto &itr : population) {
+            itr.clear();
+        }
+        population.clear();
+        fitness.clear();
+
+        population = nextGeneration;
+        fitness = nextFitness;
+
+        for (auto &itr : nextGeneration) {
+            itr.clear();
+        }
+        nextGeneration.clear();
+        nextFitness.clear();
+
+
+        // Krzyżowanie osobników
+        for (int j = 0; j < (int) crossRate * populationSize; j++) {
+            do {
+                p1 = rand() % populationSize;
+                p2 = rand() % populationSize;
+            } while (p1 == p2);
+
+            orderedCrossover(population.at(p1), population.at(p2));
+        }
+
+        // Mutowanie
+        for (int j = 0; j < (int) mutationRate * populationSize; j++) {
+            mutation = rand() & populationSize;
+            do {
+                p1 = rand() % size;
+                p2 = rand() % size;
+            } while (p1 == p2);
+
+            std::swap(population.at(mutation)[p1], population.at(mutation)[p2]);
+        }
+    }
+
+    result = INT32_MAX;
+
+    for (auto &itr : fitness) {
+        if (itr < result)
+            result = itr;
+    }
+
+    std::cout << result;
+
+
 }

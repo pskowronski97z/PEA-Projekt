@@ -12,7 +12,7 @@ class GeneticAlgorithm
 private:
 
     int stop;
-    int population;
+    int populationSize;
     float crossRate;
     float mutationRate;
     int **matrix;
@@ -24,6 +24,7 @@ public:
     int calculatePath(std::vector<int> &path);
     void orderedCrossover(std::vector<int> &parent1, std::vector<int> &parent2);
     bool isInPath(int element, int begin, int end, std::vector<int> &path);
+    void apply();
 };
 
 

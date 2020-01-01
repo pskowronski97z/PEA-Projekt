@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.cpp
-GeneticAlgorithm.h
-/home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.h
-iostream
--
-
 /home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.h
 Graph.h
 /home/pskowronski/Repos/PEA-Projekt/E3/Graph.h
@@ -20,5 +14,17 @@ vector
 
 /home/pskowronski/Repos/PEA-Projekt/E3/Graph.h
 string
+-
+
+/home/pskowronski/Repos/PEA-Projekt/E3/main.cpp
+iostream
+-
+Graph.h
+/home/pskowronski/Repos/PEA-Projekt/E3/Graph.h
+GeneticAlgorithm.h
+/home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.h
+vector
+-
+time.h
 -
 
