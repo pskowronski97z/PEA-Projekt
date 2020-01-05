@@ -150,12 +150,12 @@ void GeneticAlgorithm::apply() {
     std::vector<int> fitness;
     std::vector<int> nextFitness;
     std::vector<int> permutation;
-    int tournamentSize = populationSize*0.00001;
+    int tournamentSize = 100;
     int index;
     int result;
     int p1;
     int p2;
-    int mutation;
+
     std::clock_t start;
 
     for (int i = 0; i < size; i++) {
@@ -174,6 +174,7 @@ void GeneticAlgorithm::apply() {
 
     //Kolejne iteracje algorytmu
     while ((((std::clock() - start) / (double) CLOCKS_PER_SEC)) < stop) {
+
         // Tworzenie nowej populacji na drodze selekcji
         for (int j = 0; j < populationSize; j++) {
 
@@ -192,7 +193,6 @@ void GeneticAlgorithm::apply() {
                 }
             }
             nextGeneration.push_back(permutation);
-            nextFitness.push_back(result);
         }
 
         // Wymiana pokoleń
@@ -200,48 +200,45 @@ void GeneticAlgorithm::apply() {
             itr.clear();
         }
         population.clear();
-        fitness.clear();
-
         population = nextGeneration;
-        fitness = nextFitness;
 
         for (auto &itr : nextGeneration) {
             itr.clear();
         }
         nextGeneration.clear();
-        nextFitness.clear();
-
 
         // Krzyżowanie osobników
-        for (int j = 0; j < (int) crossRate * populationSize; j++) {
+        for (int j = 0; j < (int) crossRate * populationSize; j+=2) {
             do {
                 p1 = rand() % populationSize;
                 p2 = rand() % populationSize;
             } while (p1 == p2);
 
-            orderedCrossover(population.at(p1), population.at(p2));
+            orderedCrossover(population.at(j), population.at(j+1));
         }
 
         // Mutowanie
         for (int j = 0; j < (int) mutationRate * populationSize; j++) {
-            mutation = rand() & populationSize;
             do {
                 p1 = rand() % size;
                 p2 = rand() % size;
             } while (p1 == p2);
 
-            std::swap(population.at(mutation)[p1], population.at(mutation)[p2]);
+            std::swap(population.at(j)[p1], population.at(j)[p2]);
         }
+
+        for(auto &itr : population)
+        {
+            nextFitness.push_back(calculatePath(itr));
+        }
+
+        fitness.clear();
+        fitness = nextFitness;
+        nextFitness.clear();
+
     }
 
-    result = INT32_MAX;
-
-    for (auto &itr : fitness) {
-        if (itr < result)
-            result = itr;
-    }
+    result = *(std::min_element(fitness.begin(),fitness.end()));
 
     std::cout << result;
-
-
 }
