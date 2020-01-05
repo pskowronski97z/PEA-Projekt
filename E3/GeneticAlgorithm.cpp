@@ -30,6 +30,70 @@ int GeneticAlgorithm::calculatePath(std::vector<int> &path) {
     return result;
 }
 
+void GeneticAlgorithm::partiallyCrossover(std::vector<int> &parent1, std::vector<int> &parent2) {
+
+    std::vector<int> desc1(size, -1);
+    std::vector<int> desc2(size, -1);
+    std::vector<int> map1(size, -1);
+    std::vector<int> map2(size, -1);
+
+    int begin;
+    int end;
+    int temp = 0;
+
+    do {
+        begin = rand() % size;
+        end = rand() % size;
+    } while (begin == end || begin == 0 || end == size - 1);
+
+    if (end < begin) {
+        std::swap(begin, end);
+    }
+
+    for (int i = begin; i <= end; i++) {
+        desc1[i] = parent1[i];
+        desc2[i] = parent2[i];
+        map1[parent1[i]] = parent2[i];
+        map2[parent2[i]] = parent1[i];
+
+    }
+
+    for (int i = 0; i < size; i++) {
+        if (desc1[i] == -1) {
+            if (!isInPath(parent2[i], begin, end, desc1)) {
+                desc1[i] = parent2[i];
+            } else {
+                temp = parent2[i];
+                do {
+                    temp = map1[temp];
+                } while (isInPath(temp, begin, end, desc1));
+
+                desc1[i] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < size; i++) {
+        if (desc2[i] == -1) {
+            if (!isInPath(parent1[i], begin, end, desc2)) {
+                desc2[i] = parent1[i];
+            } else {
+                temp = parent1[i];
+                do {
+                    temp = map2[temp];
+                } while (isInPath(temp, begin, end, desc2));
+
+                desc2[i] = temp;
+            }
+        }
+    }
+
+    parent1.clear();
+    parent2.clear();
+    parent1 = desc1;
+    parent2 = desc2;
+}
+
 void GeneticAlgorithm::orderedCrossover(std::vector<int> &parent1, std::vector<int> &parent2) {
 
     std::vector<int> desc1;
@@ -150,7 +214,7 @@ void GeneticAlgorithm::apply() {
     std::vector<int> fitness;
     std::vector<int> nextFitness;
     std::vector<int> permutation;
-    int tournamentSize = 100;
+    int tournamentSize = 5;
     int index;
     int result;
     int p1;
@@ -165,15 +229,18 @@ void GeneticAlgorithm::apply() {
     for (int i = 0; i < populationSize; i++) {
         std::random_shuffle(permutation.begin(), permutation.end());
         population.push_back(permutation);
-        fitness.push_back(calculatePath(permutation));
     }
-
-    permutation.clear();
 
     start = std::clock();
 
     //Kolejne iteracje algorytmu
-    while ((((std::clock() - start) / (double) CLOCKS_PER_SEC)) < stop) {
+    while (((std::clock() - start) / (CLOCKS_PER_SEC)) < stop) {
+
+        // Ocena jakości osobników
+        fitness.clear();
+        for (auto &itr : population) {
+            fitness.push_back(calculatePath(itr));
+        }
 
         // Tworzenie nowej populacji na drodze selekcji
         for (int j = 0; j < populationSize; j++) {
@@ -208,17 +275,17 @@ void GeneticAlgorithm::apply() {
         nextGeneration.clear();
 
         // Krzyżowanie osobników
-        for (int j = 0; j < (int) crossRate * populationSize; j+=2) {
+        for (int j = 0; j < (int) (crossRate * (float) populationSize); j += 2) {
             do {
                 p1 = rand() % populationSize;
                 p2 = rand() % populationSize;
             } while (p1 == p2);
 
-            orderedCrossover(population.at(j), population.at(j+1));
+            partiallyCrossover(population.at(j), population.at(j + 1));
         }
 
         // Mutowanie
-        for (int j = 0; j < (int) mutationRate * populationSize; j++) {
+        for (int j = 0; j < (int) (mutationRate * (float) populationSize); j++) {
             do {
                 p1 = rand() % size;
                 p2 = rand() % size;
@@ -226,19 +293,11 @@ void GeneticAlgorithm::apply() {
 
             std::swap(population.at(j)[p1], population.at(j)[p2]);
         }
-
-        for(auto &itr : population)
-        {
-            nextFitness.push_back(calculatePath(itr));
-        }
-
-        fitness.clear();
-        fitness = nextFitness;
-        nextFitness.clear();
-
     }
 
-    result = *(std::min_element(fitness.begin(),fitness.end()));
+    result = *(std::min_element(fitness.begin(), fitness.end()));
+    std::cout << "Rozwiązanie: " << result << std::endl;
 
-    std::cout << result;
 }
+
+
