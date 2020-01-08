@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.cpp
+GeneticAlgorithm.h
+/home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.h
+ctime
+-
+
 /home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.h
 Graph.h
 /home/pskowronski/Repos/PEA-Projekt/E3/Graph.h
@@ -23,10 +29,12 @@ Graph.h
 /home/pskowronski/Repos/PEA-Projekt/E3/Graph.h
 GeneticAlgorithm.h
 /home/pskowronski/Repos/PEA-Projekt/E3/GeneticAlgorithm.h
-vector
--
-time.h
+ctime
 -
 string
+-
+cstdlib
+-
+cstring
 -
 

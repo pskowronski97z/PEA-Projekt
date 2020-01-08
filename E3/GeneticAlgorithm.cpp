@@ -32,10 +32,7 @@ void GeneticAlgorithm::partiallyCrossover(std::vector<int> &parent1, std::vector
     do {
         begin = rand() % size;
         end = rand() % size;
-    } while (begin == end || begin == 0 || end == size - 1);
-
-    if (end < begin)
-        std::swap(begin, end);
+    } while ((0 >= (end - begin)) || !begin || !(end - (size - 1)));
 
     for (int i = begin; i <= end; i++) {
         desc1[i] = parent1[i];
@@ -159,7 +156,7 @@ bool GeneticAlgorithm::isInPath(int element, int begin, int end, std::vector<int
     return false;
 }
 
-int GeneticAlgorithm::apply() {
+int GeneticAlgorithm::apply(bool crossing) {
     std::vector<std::vector<int>> population, nextPopulation;
     std::vector<int> fitness, permutation;
     int tournamentSize = 5;
@@ -218,9 +215,12 @@ int GeneticAlgorithm::apply() {
             do {
                 p1 = rand() % populationSize;
                 p2 = rand() % populationSize;
-            } while (p1 == p2);
+            } while (!(p1 - p2));
 
-            orderedCrossover(population.at(j), population.at(j + 1));
+            if (crossing)
+                orderedCrossover(population.at(j), population.at(j + 1));
+            else
+                partiallyCrossover(population.at(j), population.at(j + 1));
         }
 
         // Mutacje osobników
@@ -228,7 +228,7 @@ int GeneticAlgorithm::apply() {
             do {
                 p1 = rand() % size;
                 p2 = rand() % size;
-            } while (p1 == p2);
+            } while (!(p1 - p2));
 
             std::swap(population.at(j)[p1], population.at(j)[p2]);
         }
