@@ -8,6 +8,6 @@
 ### E2, E3. Algorytmy metaheurystyczne
 * Przeszukiwanie z zakazami (Tabu Search) 
 * Symulowane wyżarzanie (Simulated Annealing)
-* Algorytm Genetyczny (Genetic Algorithm) z dwoma schematami krzyżowania: OX, PMX
+* Algorytm genetyczny (Genetic Algorithm) z dwoma schematami krzyżowania: OX, PMX
 
 _*Binarka GA kompilowana pod Linuxem, reszta na Win_
